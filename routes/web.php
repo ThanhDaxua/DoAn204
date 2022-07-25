@@ -184,3 +184,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Route::post('vnpay-payment', 'PaymentController@vnpay_payment')->name('vnpay.payment');
+
+Route::get('payment-success', 'PaymentController@payment_success');

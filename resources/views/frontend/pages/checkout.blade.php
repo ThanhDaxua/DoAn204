@@ -24,9 +24,8 @@
     <!-- Start Checkout -->
     <section class="shop checkout section">
         <div class="container">
-                <form class="form" method="POST" action="{{route('cart.order')}}">
-                    @csrf
-                    <div class="row">
+       
+                    <div class="row form">
 
                         <div class="col-lg-8 col-12">
                             <div class="checkout-form">
@@ -162,6 +161,12 @@
                                             <form-group>
                                                 <input name="payment_method"  type="radio" value="cod"> <label> Thanh Toán Khi Giao Hàng</label><br>
 {{--                                                <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label>--}}
+
+<form class="form" method="POST" action="{{route('vnpay.payment')}}">
+@csrf
+    <input name="amount" value="{{Helper::totalCartPrice()}}" type="hidden" id="amount"></input>
+                    <button type="submit" class="mb-3 p-2">Thanh Toán Bằng Vnpay</button>
+                </form>
                                             </form-group>
 
                                         </div>
@@ -178,16 +183,20 @@
                                 <!-- Button Widget -->
                                 <div class="single-widget get-button">
                                     <div class="content">
+                                    <form class="form" method="POST" action="{{route('cart.order')}}">
+                    @csrf
                                         <div class="button">
                                             <button type="submit" class="btn">Thanh Toán</button>
                                         </div>
+                </form>
+
                                     </div>
                                 </div>
                                 <!--/ End Button Widget -->
                             </div>
                         </div>
                     </div>
-                </form>
+               
         </div>
     </section>
     <!--/ End Checkout -->
