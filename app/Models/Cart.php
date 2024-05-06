@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     protected $fillable=['user_id','product_id','order_id','quantity','amount','price','status'];
-    
+
     // public function product(){
     //     return $this->hasOne('App\Models\Product','id','product_id');
     // }
@@ -20,5 +20,13 @@ class Cart extends Model
     }
     public function order(){
         return $this->belongsTo(Order::class,'order_id');
+    }
+
+    public static function totalOfSales(){
+        $data=Cart::where('status','new')->sum('amount');
+        if($data){
+            return $data;
+        }
+        return 0;
     }
 }

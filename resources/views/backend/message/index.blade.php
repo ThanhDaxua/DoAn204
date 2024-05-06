@@ -6,17 +6,17 @@
        @include('backend.layouts.notification')
     </div>
   </div>
-  <h5 class="card-header">Messages</h5>
+  <h5 class="card-header">Tin nhắn</h5>
   <div class="card-body">
     @if(count($messages)>0)
     <table class="table message-table" id="message-dataTable">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Date</th>
-          <th scope="col">Action</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Vấn đề</th>
+          <th scope="col">Ngày</th>
+          <th scope="col">Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
           <td>
             <a href="{{route('message.show',$message->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
             <form method="POST" action="{{route('message.destroy',[$message->id])}}">
-              @csrf 
+              @csrf
               @method('delete')
                   <button class="btn btn-danger btn-sm dltBtn" data-id={{$message->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
             </form>
@@ -44,7 +44,7 @@
       {{$messages->links()}}
     </nav>
     @else
-      <h2>Messages Empty!</h2>
+      <h2>Tin nhắn trống!</h2>
     @endif
   </div>
 </div>
@@ -73,7 +73,7 @@
   <!-- Page level custom scripts -->
   <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
   <script>
-      
+
       $('#message-dataTable').DataTable( {
             "columnDefs":[
                 {
@@ -86,7 +86,7 @@
         // Sweet alert
 
         function deleteData(id){
-            
+
         }
   </script>
   <script>
@@ -102,8 +102,8 @@
             // alert(dataID);
             e.preventDefault();
             swal({
-                  title: "Are you sure?",
-                  text: "Once deleted, you will not be able to recover this data!",
+                title: "Bạn có chắc không?",
+                text: "Khi xóa sẽ không thể khôi phục dữ liệu!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
@@ -112,7 +112,7 @@
                   if (willDelete) {
                     form.submit();
                   } else {
-                      swal("Your data is safe!");
+                      swal("Dữ liệu an toàn!");
                   }
               });
         })

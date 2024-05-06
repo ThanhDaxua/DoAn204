@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Category Lists</h6>
-      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Category</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách danh mục sản phẩm</h6>
+      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,26 +18,26 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
+              <th>STT</th>
+              <th>Tiêu đề</th>
               <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Danh mục cha?</th>
+              <th>Danh mục cha</th>
+              <th>Ảnh</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Slug</th>
+                <th>Danh mục cha?</th>
+                <th>Danh mục cha</th>
+                <th>Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
             </tr>
           </tfoot>
           <tbody>
@@ -81,7 +81,7 @@
         </table>
         <span style="float:right">{{$categories->links()}}</span>
         @else
-          <h6 class="text-center">No Categories found!!! Please create Category</h6>
+          <h6 class="text-center">Không tìm thấy danh mục sản phẩm nào!!! Vui lòng tạo thêm danh mục sản phẩm</h6>
         @endif
       </div>
     </div>
@@ -137,8 +137,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                  title: "Bạn có chắc không?",
+                  text: "Khi xóa sẽ không thể khôi phục dữ liệu!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -147,7 +147,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Dữ liệu an toàn!");
                     }
                 });
           })

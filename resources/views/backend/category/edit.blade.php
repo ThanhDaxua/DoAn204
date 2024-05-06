@@ -6,7 +6,7 @@
     <h5 class="card-header">Edit Category</h5>
     <div class="card-body">
       <form method="post" action="{{route('category.update',$category->id)}}">
-        @csrf 
+        @csrf
         @method('PATCH')
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
@@ -25,18 +25,18 @@
         </div>
 
         <div class="form-group">
-          <label for="is_parent">Is Parent</label><br>
-          <input type="checkbox" name='is_parent' id='is_parent' value='{{$category->is_parent}}' {{(($category->is_parent==1)? 'checked' : '')}}> Yes                        
+          <label for="is_parent">Có là danh mục cha?</label><br>
+          <input type="checkbox" name='is_parent' id='is_parent' value='{{$category->is_parent}}' {{(($category->is_parent==1)? 'checked' : '')}}> Yes
         </div>
         {{-- {{$parent_cats}} --}}
         {{-- {{$category}} --}}
 
       <div class="form-group {{(($category->is_parent==1) ? 'd-none' : '')}}" id='parent_cat_div'>
-          <label for="parent_id">Parent Category</label>
+          <label for="parent_id">Danh mục cha</label>
           <select name="parent_id" class="form-control">
-              <option value="">--Select any category--</option>
+              <option value="">--Lựa chọn danh mục cha--</option>
               @foreach($parent_cats as $key=>$parent_cat)
-              
+
                   <option value='{{$parent_cat->id}}' {{(($parent_cat->id==$category->parent_id) ? 'selected' : '')}}>{{$parent_cat->title}}</option>
               @endforeach
           </select>
@@ -57,7 +57,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        
+
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
@@ -69,7 +69,7 @@
           @enderror
         </div>
         <div class="form-group mb-3">
-           <button class="btn btn-success" type="submit">Update</button>
+           <button class="btn btn-success" type="submit">Cập nhật</button>
         </div>
       </form>
     </div>
@@ -88,7 +88,7 @@
 
     $(document).ready(function() {
     $('#summary').summernote({
-      placeholder: "Write short description.....",
+      placeholder: "Viết một đoạn mô tả ngắn.....",
         tabsize: 2,
         height: 150
     });

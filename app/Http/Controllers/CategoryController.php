@@ -56,13 +56,13 @@ class CategoryController extends Controller
         }
         $data['slug']=$slug;
         $data['is_parent']=$request->input('is_parent',0);
-        // return $data;   
+        // return $data;
         $status=Category::create($data);
         if($status){
-            request()->session()->flash('success','Category successfully added');
+            request()->session()->flash('success','Thêm danh mục sản phẩm thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred, Please try again!');
+            request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại!');
         }
         return redirect()->route('category.index');
 
@@ -117,10 +117,10 @@ class CategoryController extends Controller
         // return $data;
         $status=$category->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Category successfully updated');
+            request()->session()->flash('success','Cập nhật danh mục thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred, Please try again!');
+            request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại!');
         }
         return redirect()->route('category.index');
     }
@@ -137,15 +137,15 @@ class CategoryController extends Controller
         $child_cat_id=Category::where('parent_id',$id)->pluck('id');
         // return $child_cat_id;
         $status=$category->delete();
-        
+
         if($status){
             if(count($child_cat_id)>0){
                 Category::shiftChild($child_cat_id);
             }
-            request()->session()->flash('success','Category successfully deleted');
+            request()->session()->flash('success','Xóa danh mục thành công');
         }
         else{
-            request()->session()->flash('error','Error while deleting category');
+            request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại');
         }
         return redirect()->route('category.index');
     }

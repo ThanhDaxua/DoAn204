@@ -29,7 +29,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.order.index')}}">
             <i class="fas fa-hammer fa-chart-area"></i>
-            <span>Orders</span>
+            <span>Đơn hàng của bạn</span>
         </a>
     </li>
 
@@ -37,9 +37,9 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.productreview.index')}}">
             <i class="fas fa-comments"></i>
-            <span>Reviews</span></a>
+            <span>Đánh giá của bạn</span></a>
     </li>
-    
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -52,7 +52,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{route('user.post-comment.index')}}">
           <i class="fas fa-comments fa-chart-area"></i>
-          <span>Comments</span>
+          <span>Bình luận của bạn</span>
       </a>
     </li>
     <!-- Sidebar Toggler (Sidebar) -->

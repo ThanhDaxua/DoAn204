@@ -46,4 +46,12 @@ class Product extends Model
         return $this->hasOne(Brand::class,'id','brand_id');
     }
 
+    public static function sumActiveProduct(){
+        $data=Product::where('status','active')->sum('stock');
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
+
 }

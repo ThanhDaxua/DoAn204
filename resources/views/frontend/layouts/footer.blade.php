@@ -2,33 +2,33 @@
 	<!-- Start Footer Area -->
 	<footer class="footer">
 		<!-- Footer Top -->
-		<div class="footer-top section">
+		<div class="footer-top section" style="padding-bottom: 50px; padding-top: 50px">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer about">
 							<div class="logo">
-								<a href="index.html"><img src="{{asset('backend/img/logo2.png')}}" alt="#"></a>
+								<a href="index.html"><img src="{{asset('/storage/photos/33/LOGO_Footer_1.png')}}" alt="#"></a>
 							</div>
 							@php
 								$settings=DB::table('settings')->get();
 							@endphp
 							<p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
-							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
+							<p class="call">Nếu bạn có câu hỏi? Gọi ngay cho chúng tôi.<span style="margin-top: 10px"><a href="tel:0398314279" >@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
 						</div>
 						<!-- End Single Widget -->
 					</div>
 					<div class="col-lg-2 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
-							<h4>Information</h4>
+							<h4>Thông tin</h4>
 							<ul>
-								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="#">Faq</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="{{route('contact')}}">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
+								<li><a href="{{route('about-us')}}">Thông Tin</a></li>
+								<li><a href="#">FaQ</a></li>
+								<li><a href="#">Điều Khoản & Điều Kiện</a></li>
+								<li><a href="{{route('contact')}}">Liên Hệ</a></li>
+								<li><a href="#">Hỗ Trợ</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -36,13 +36,13 @@
 					<div class="col-lg-2 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
-							<h4>Customer Service</h4>
+							<h4>Dịch Vụ</h4>
 							<ul>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Phương Thức Thanh Toán</a></li>
+								<li><a href="#">Hoàn Trả Tiền</a></li>
+								<li><a href="#">Hoàn Trả</a></li>
+								<li><a href="#">Giao Hàng</a></li>
+								<li><a href="#">Chính Sách Bảo Mật</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -50,17 +50,20 @@
 					<div class="col-lg-3 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer social">
-							<h4>Get In Tuch</h4>
+							<h4>Liên Hệ</h4>
 							<!-- Single Widget -->
 							<div class="contact">
 								<ul>
-									<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->email}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+									<li>@foreach($settings as $data)Địa chỉ:&nbsp{{$data->address}} @endforeach</li>
+									<h4>thanhdhasodhasodsah@gmial.com</h4>
+									<!-- <li>@foreach($settings as $data)Email:&nbsp &nbsp {{$data->email}} @endforeach</li> -->
+									<li>@foreach($settings as $data)SĐT:&nbsp &nbsp &nbsp &nbsp{{$data->phone}} @endforeach</li>
 								</ul>
 							</div>
 							<!-- End Single Widget -->
-							<div class="sharethis-inline-follow-buttons"></div>
+                            <br>
+                            <h6>Follow Me</h6>
+							<div class="sharethis-inline-share-buttons"></div>
 						</div>
 						<!-- End Single Widget -->
 					</div>
@@ -74,7 +77,7 @@
 					<div class="row">
 						<div class="col-lg-6 col-12">
 							<div class="left">
-								<p>Copyright © {{date('Y')}} <a href="https://github.com/Prajwal100" target="_blank">Prajwal Rai</a>  -  All Rights Reserved.</p>
+								<p>Copyright © {{date('Y')}} <a href="https://www.facebook.com/Thinh.Dzep.Zai/" target="_blank">Gia Thinh</a>  -  All Rights Reserved.</p>
 							</div>
 						</div>
 						<div class="col-lg-6 col-12">
@@ -88,8 +91,11 @@
 		</div>
 	</footer>
 	<!-- /End Footer Area -->
- 
+
 	<!-- Jquery -->
+
+
+
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-migrate-3.0.0.js')}}"></script>
 	<script src="{{asset('frontend/js/jquery-ui.min.js')}}"></script>
@@ -125,7 +131,7 @@
 	<!-- Active JS -->
 	<script src="{{asset('frontend/js/active.js')}}"></script>
 
-	
+
 	@stack('scripts')
 	<script>
 		setTimeout(function(){

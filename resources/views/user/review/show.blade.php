@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 
-@section('title','Order Detail')
+@section('title','Chi tiết đơn hàng')
 
 @section('main-content')
 <div class="card">
@@ -11,15 +11,15 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-            <th>S.N.</th>
-            <th>Order No.</th>
-            <th>Name</th>
+            <th>STT</th>
+            <th>Số hóa đơn</th>
+            <th>Tên</th>
             <th>Email</th>
-            <th>Quantity</th>
-            <th>Charge</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>Só lượng</th>
+            <th>Phí vận chuyển</th>
+            <th>Tổng</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -29,8 +29,8 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>${{number_format($order->delivery_charge,2)}}</td>
-            <td>${{number_format($order->total_amount,2)}}</td>
+            <td>{{number_format($order->delivery_charge,0)}}đ</td>
+            <td>{{number_format($order->total_amount,0)}}đ</td>
             <td>
                 @if($order->status=='new')
                   <span class="badge badge-primary">{{$order->status}}</span>
@@ -45,12 +45,12 @@
             <td>
                 <a href="{{route('order.edit',$order->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                 <form method="POST" action="{{route('order.destroy',[$order->id])}}">
-                  @csrf 
+                  @csrf
                   @method('delete')
                       <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </td>
-          
+
         </tr>
       </tbody>
     </table>
@@ -60,38 +60,38 @@
         <div class="row">
           <div class="col-lg-6 col-lx-4">
             <div class="order-info">
-              <h4 class="text-center pb-4">ORDER INFORMATION</h4>
+              <h4 class="text-center pb-4">Thông tin đơn hàng</h4>
               <table class="table">
                     <tr class="">
-                        <td>Order Number</td>
+                        <td>Số hóa đơn</td>
                         <td> : {{$order->cart_id}}</td>
                     </tr>
                     <tr>
-                        <td>Order Date</td>
+                        <td>Ngày đặt hàng</td>
                         <td> : {{$order->created_at->diffForHumans()}}</td>
                     </tr>
                     <tr>
-                        <td>Quantity</td>
+                        <td>Số lượng</td>
                         <td> : {{$order->quantity}}</td>
                     </tr>
                     <tr>
-                        <td>Order Status</td>
+                        <td>Trạng thái đơn hàng</td>
                         <td> : {{$order->status}}</td>
                     </tr>
                     <tr>
-                        <td>Shipping Charge</td>
-                        <td> : $ {{number_format($order->delivery_charge,2)}}</td>
+                        <td>Phí vận chuyển</td>
+                        <td> :  {{number_format($order->delivery_charge,0)}}đ</td>
                     </tr>
                     <tr>
-                        <td>Total Amount</td>
-                        <td> : $ {{number_format($order->total_amount,2)}}</td>
+                        <td>Tổng tiền</td>
+                        <td> :  {{number_format($order->total_amount,0)}}đ</td>
                     </tr>
                     <tr>
-                        <td>Payment Method</td>
+                        <td>Phương thức thanh toán</td>
                         <td> : </td>
                     </tr>
                     <tr>
-                        <td>Payment Status</td>
+                        <td>Trạng thái thanh toán</td>
                         <td> : </td>
                     </tr>
               </table>
@@ -100,10 +100,10 @@
 
           <div class="col-lg-6 col-lx-4">
             <div class="shipping-info">
-              <h4 class="text-center pb-4">SHIPPING INFORMATION</h4>
+              <h4 class="text-center pb-4">Thông tin giao hàng</h4>
               <table class="table">
                     <tr class="">
-                        <td>Full Name</td>
+                        <td>Tên đầy đủ</td>
                         <td> : {{$order->first_name}} {{$order->last_name}}</td>
                     </tr>
                     <tr>
@@ -111,19 +111,19 @@
                         <td> : {{$order->email}}</td>
                     </tr>
                     <tr>
-                        <td>Phone No.</td>
+                        <td>Số điện thoại</td>
                         <td> : {{$order->phone}}</td>
                     </tr>
                     <tr>
-                        <td>Address</td>
+                        <td>Địa chỉ</td>
                         <td> : {{$order->address1}}, {{$order->address2}}</td>
                     </tr>
                     <tr>
-                        <td>Country</td>
+                        <td>Quốc gia</td>
                         <td> : {{$order->country}}</td>
                     </tr>
                     <tr>
-                        <td>Post Code</td>
+                        <td>Mã bưu điện</td>
                         <td> : {{$order->post_code}}</td>
                     </tr>
               </table>

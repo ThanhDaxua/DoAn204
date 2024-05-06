@@ -132,7 +132,7 @@ class OrderController extends Controller
         // dd($order->id);
         $users=User::where('role','admin')->first();
         $details=[
-            'title'=>'New order created',
+            'title'=>'Có đơn hàng mới',
             'actionURL'=>route('order.show',$order->id),
             'fas'=>'fa-file-alt'
         ];
@@ -146,8 +146,8 @@ class OrderController extends Controller
         }
         Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
-        // dd($users);        
-        request()->session()->flash('success','Your product successfully placed in order');
+        // dd($users);
+        request()->session()->flash('success','Bạn đã đặt hàng thành công');
         return redirect()->route('home');
     }
 
@@ -201,10 +201,10 @@ class OrderController extends Controller
         }
         $status=$order->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Successfully updated order');
+            request()->session()->flash('success','Cập nhật đơn hàng thành công');
         }
         else{
-            request()->session()->flash('error','Error while updating order');
+            request()->session()->flash('error','Có lỗi khi cập nhật đơn hàng');
         }
         return redirect()->route('order.index');
     }
@@ -221,15 +221,15 @@ class OrderController extends Controller
         if($order){
             $status=$order->delete();
             if($status){
-                request()->session()->flash('success','Order Successfully deleted');
+                request()->session()->flash('success','Xóa đơn hàng thành công');
             }
             else{
-                request()->session()->flash('error','Order can not deleted');
+                request()->session()->flash('error','Đơn hàng không thể xóa');
             }
             return redirect()->route('order.index');
         }
         else{
-            request()->session()->flash('error','Order can not found');
+            request()->session()->flash('error','Không tìm thấy đơn hàng');
             return redirect()->back();
         }
     }
@@ -243,28 +243,28 @@ class OrderController extends Controller
         $order=Order::where('user_id',auth()->user()->id)->where('order_number',$request->order_number)->first();
         if($order){
             if($order->status=="new"){
-            request()->session()->flash('success','Your order has been placed. please wait.');
-            return redirect()->route('home');
+            request()->session()->flash('success','Đơn hàng của bạn đã được đặt. Vui lòng chờ.');
+            return redirect()->route('order.track');
 
             }
             elseif($order->status=="process"){
-                request()->session()->flash('success','Your order is under processing please wait.');
-                return redirect()->route('home');
-    
+                request()->session()->flash('success','Đơn hàng của bạn đang được xử lý. Vui lòng chờ.');
+                return redirect()->route('order.track');
+
             }
             elseif($order->status=="delivered"){
-                request()->session()->flash('success','Your order is successfully delivered.');
-                return redirect()->route('home');
-    
+                request()->session()->flash('success','Đơn hàng của bạn đã được giao. Xin chân thành cảm ơn.');
+                return redirect()->route('order.track');
+
             }
             else{
-                request()->session()->flash('error','Your order canceled. please try again');
-                return redirect()->route('home');
-    
+                request()->session()->flash('error','Đơn hàng của bạn đã bị hủy, vui lòng thử lại.');
+                return redirect()->route('order.track');
+
             }
         }
         else{
-            request()->session()->flash('error','Invalid order numer please try again');
+            request()->session()->flash('error','Mã đơn hàng không hợp lệ, vui lòng thử lại.');
             return back();
         }
     }
@@ -300,6 +300,34 @@ class OrderController extends Controller
         $data=[];
         for($i=1; $i <=12; $i++){
             $monthName=date('F', mktime(0,0,0,$i,1));
+            $data[$monthName] = (!empty($result[$i]))? number_format((float)($result[$i]), 2, '.', '') : 0.0;
+        }
+        return $data;
+    }
+
+    // Income chart quarterly
+    public function incomeChartQuarterly(Request $request){
+        $year=\Carbon\Carbon::now()->year;
+        $quarter=\Carbon\Carbon::quartersUntil($endDate = null, $factor = 1);
+        // dd($year);
+        $items=Order::with(['cart_info'])->whereMonth('created_at',$quarter)->where('status','delivered')->get()
+            ->groupBy(function($d){
+                return \Carbon\Carbon::parse($d->created_at)->format('m');
+            });
+        // dd($items);
+        $result=[];
+        foreach($items as $month=>$item_collections){
+            foreach($item_collections as $item){
+                $amount=$item->cart_info->sum('amount');
+                // dd($amount);
+                $m=intval($month);
+                // return $m;
+                isset($result[$m]) ? $result[$m] += $amount :$result[$m]=$amount;
+            }
+        }
+        $data=[];
+        for($i=1; $i <=4; $i++){
+            $monthName=date('n', mktime(0,0,0,$i,1));
             $data[$monthName] = (!empty($result[$i]))? number_format((float)($result[$i]), 2, '.', '') : 0.0;
         }
         return $data;

@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
-      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách sản phẩm</h6>
+      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Thêm sản phẩm</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,36 +18,36 @@
         <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Is Featured</th>
-              <th>Price</th>
-              <th>Discount</th>
+              <th>STT</th>
+              <th>Tiêu đề</th>
+              <th>Danh mục</th>
+              <th>Nổi bật ?</th>
+              <th>Giá</th>
+              <th>Giảm giá</th>
               <th>Size</th>
-              <th>Condition</th>
-              <th>Brand</th>
-              <th>Stock</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Tình trạng</th>
+              <th>Thương hiệu</th>
+              <th>Kho</th>
+              <th>Ảnh</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Is Featured</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Size</th>
-              <th>Condition</th>
-              <th>Brand</th>
-              <th>Stock</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Danh mục</th>
+                <th>Nổi bật ?</th>
+                <th>Giá</th>
+                <th>Giảm giá</th>
+                <th>Size</th>
+                <th>Tình trạng</th>
+                <th>Thương hiệu</th>
+                <th>Kho</th>
+                <th>Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
             </tr>
           </tfoot>
           <tbody>
@@ -63,12 +63,12 @@
                     <td>{{$product->title}}</td>
                     <td>{{$product->cat_info['title']}}
                       <sub>
-                          {{$product->sub_cat_info->title ?? ''}}
+                          /{{$product->sub_cat_info->title ?? ''}}
                       </sub>
                     </td>
                     <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td>
-                    <td>Rs. {{$product->price}} /-</td>
-                    <td>  {{$product->discount}}% OFF</td>
+                    <td>{{$product->price}} đ</td>
+                    <td>{{$product->discount}}%</td>
                     <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
                     <td> {{ucfirst($product->brand->title)}}</td>
@@ -111,7 +111,7 @@
         </table>
         <span style="float:right">{{$products->links()}}</span>
         @else
-          <h6 class="text-center">No Products found!!! Please create Product</h6>
+          <h6 class="text-center">Không có sản phẩm nào !!! Vui lòng tạo thêm</h6>
         @endif
       </div>
     </div>
@@ -175,8 +175,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                  title: "Bạn có chắc không?",
+                  text: "Khi xóa sẽ không thể khôi phục dữ liệu!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -185,7 +185,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Dữ liệu an toàn!");
                     }
                 });
           })

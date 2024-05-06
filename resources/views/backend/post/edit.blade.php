@@ -3,13 +3,13 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Edit Post</h5>
+    <h5 class="card-header">Chỉnh sửa bài viết</h5>
     <div class="card-body">
       <form method="post" action="{{route('post.update',$post->id)}}">
-        @csrf 
+        @csrf
         @method('PATCH')
         <div class="form-group">
-          <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
+          <label for="inputTitle" class="col-form-label">Tiêu đề <span class="text-danger">*</span></label>
           <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{$post->title}}" class="form-control">
           @error('title')
           <span class="text-danger">{{$message}}</span>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-          <label for="quote" class="col-form-label">Quote</label>
+          <label for="quote" class="col-form-label">Trích dẫn</label>
           <textarea class="form-control" id="quote" name="quote">{{$post->quote}}</textarea>
           @error('quote')
           <span class="text-danger">{{$message}}</span>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-          <label for="summary" class="col-form-label">Summary <span class="text-danger">*</span></label>
+          <label for="summary" class="col-form-label">Tóm tắt <span class="text-danger">*</span></label>
           <textarea class="form-control" id="summary" name="summary">{{$post->summary}}</textarea>
           @error('summary')
           <span class="text-danger">{{$message}}</span>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-          <label for="description" class="col-form-label">Description</label>
+          <label for="description" class="col-form-label">Mô tả</label>
           <textarea class="form-control" id="description" name="description">{{$post->description}}</textarea>
           @error('description')
           <span class="text-danger">{{$message}}</span>
@@ -41,44 +41,44 @@
         </div>
 
         <div class="form-group">
-          <label for="post_cat_id">Category <span class="text-danger">*</span></label>
+          <label for="post_cat_id">Danh mục <span class="text-danger">*</span></label>
           <select name="post_cat_id" class="form-control">
-              <option value="">--Select any category--</option>
+              <option value="">--Lựa chọn danh mục--</option>
               @foreach($categories as $key=>$data)
                   <option value='{{$data->id}}' {{(($data->id==$post->post_cat_id)? 'selected' : '')}}>{{$data->title}}</option>
               @endforeach
           </select>
         </div>
         {{-- {{$post->tags}} --}}
-        @php 
+        @php
                 $post_tags=explode(',',$post->tags);
                 // dd($tags);
               @endphp
         <div class="form-group">
-          <label for="tags">Tag</label>
+          <label for="tags">Thẻ</label>
           <select name="tags[]" multiple  data-live-search="true" class="form-control selectpicker">
-              <option value="">--Select any tag--</option>
+              <option value="">--Lựa chọn thẻ--</option>
               @foreach($tags as $key=>$data)
-              
+
               <option value="{{$data->title}}"  {{(( in_array( "$data->title",$post_tags ) ) ? 'selected' : '')}}>{{$data->title}}</option>
               @endforeach
           </select>
         </div>
         <div class="form-group">
-          <label for="added_by">Author</label>
+          <label for="added_by">Tác giả</label>
           <select name="added_by" class="form-control">
-              <option value="">--Select any one--</option>
+              <option value="">--Lựa chọn tác giả--</option>
               @foreach($users as $key=>$data)
                 <option value='{{$data->id}}' {{(($post->added_by==$data->id)? 'selected' : '')}}>{{$data->name}}</option>
               @endforeach
           </select>
         </div>
         <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
+          <label for="inputPhoto" class="col-form-label">Ảnh <span class="text-danger">*</span></label>
           <div class="input-group">
               <span class="input-group-btn">
                   <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
+                  <i class="fa fa-picture-o"></i> Lựa chọn
                   </a>
               </span>
           <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$post->photo}}">
@@ -89,9 +89,9 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        
+
         <div class="form-group">
-          <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
+          <label for="status" class="col-form-label">Trạng thái <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
             <option value="active" {{(($post->status=='active')? 'selected' : '')}}>Active</option>
             <option value="inactive" {{(($post->status=='inactive')? 'selected' : '')}}>Inactive</option>
@@ -101,7 +101,7 @@
           @enderror
         </div>
         <div class="form-group mb-3">
-           <button class="btn btn-success" type="submit">Update</button>
+           <button class="btn btn-success" type="submit">Cập nhật</button>
         </div>
       </form>
     </div>
@@ -124,7 +124,7 @@
 
     $(document).ready(function() {
     $('#summary').summernote({
-      placeholder: "Write short description.....",
+      placeholder: "Viết một đoạn mô tả ngắn.....",
         tabsize: 2,
         height: 150
     });

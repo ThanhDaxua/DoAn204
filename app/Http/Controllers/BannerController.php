@@ -53,10 +53,10 @@ class BannerController extends Controller
         // return $slug;
         $status=Banner::create($data);
         if($status){
-            request()->session()->flash('success','Banner successfully added');
+            request()->session()->flash('success','Thêm Banner thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred while adding banner');
+            request()->session()->flash('error','Có lỗi xảy ra trong quá trình thêm Banner');
         }
         return redirect()->route('banner.index');
     }
@@ -110,10 +110,10 @@ class BannerController extends Controller
         // return $slug;
         $status=$banner->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Banner successfully updated');
+            request()->session()->flash('success','Banner cập nhật thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred while updating banner');
+            request()->session()->flash('error','Có lỗi trong quá trình cập nhật Banner');
         }
         return redirect()->route('banner.index');
     }
@@ -129,10 +129,10 @@ class BannerController extends Controller
         $banner=Banner::findOrFail($id);
         $status=$banner->delete();
         if($status){
-            request()->session()->flash('success','Banner successfully deleted');
+            request()->session()->flash('success','Xóa Banner thành công');
         }
         else{
-            request()->session()->flash('error','Error occurred while deleting banner');
+            request()->session()->flash('error','Có lỗi xảy ra trong quá trình xóa Banner');
         }
         return redirect()->route('banner.index');
     }

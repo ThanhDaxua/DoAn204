@@ -50,16 +50,16 @@ class PostCommentController extends Controller
         $status=PostComment::create($data);
         $user=User::where('role','admin')->get();
         $details=[
-            'title'=>"New Comment created",
+            'title'=>"Bình luận mới được tạo",
             'actionURL'=>route('blog.detail',$post_info->slug),
             'fas'=>'fas fa-comment'
         ];
         Notification::send($user, new StatusNotification($details));
         if($status){
-            request()->session()->flash('success','Thank you for your comment');
+            request()->session()->flash('success','Cảm ơn bạn đã bình luận');
         }
         else{
-            request()->session()->flash('error','Something went wrong! Please try again!!');
+            request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại!!');
         }
         return redirect()->back();
     }
@@ -88,7 +88,7 @@ class PostCommentController extends Controller
             return view('backend.comment.edit')->with('comment',$comments);
         }
         else{
-            request()->session()->flash('error','Comment not found');
+            request()->session()->flash('error','Bình luận không tồn tại');
             return redirect()->back();
         }
     }
@@ -108,15 +108,15 @@ class PostCommentController extends Controller
             // return $data;
             $status=$comment->fill($data)->update();
             if($status){
-                request()->session()->flash('success','Comment successfully updated');
+                request()->session()->flash('success','Cập nhật bình luận thành công');
             }
             else{
-                request()->session()->flash('error','Something went wrong! Please try again!!');
+                request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại!!');
             }
             return redirect()->route('comment.index');
         }
         else{
-            request()->session()->flash('error','Comment not found');
+            request()->session()->flash('error','Bình luận không tồn tại');
             return redirect()->back();
         }
 
@@ -134,15 +134,15 @@ class PostCommentController extends Controller
         if($comment){
             $status=$comment->delete();
             if($status){
-                request()->session()->flash('success','Post Comment successfully deleted');
+                request()->session()->flash('success','Bình luận xóa thành công');
             }
             else{
-                request()->session()->flash('error','Error occurred please try again');
+                request()->session()->flash('error','Có lỗi xảy ra, vui lòng thử lại');
             }
             return back();
         }
         else{
-            request()->session()->flash('error','Post Comment not found');
+            request()->session()->flash('error','Bình luận bài viết không tồn tại');
             return redirect()->back();
         }
     }

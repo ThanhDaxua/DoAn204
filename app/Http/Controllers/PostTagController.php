@@ -49,10 +49,10 @@ class PostTagController extends Controller
         $data['slug']=$slug;
         $status=PostTag::create($data);
         if($status){
-            request()->session()->flash('success','Post Tag Successfully added');
+            request()->session()->flash('success','Thêm thành công thẻ bài viết');
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error','Vui lòng thử lại!!');
         }
         return redirect()->route('post-tag.index');
     }
@@ -98,10 +98,10 @@ class PostTagController extends Controller
         $data=$request->all();
         $status=$postTag->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Post Tag Successfully updated');
+            request()->session()->flash('success','Cập nhật thành công thẻ bài viết');
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error','Vui lòng thử lại!!');
         }
         return redirect()->route('post-tag.index');
     }
@@ -115,14 +115,14 @@ class PostTagController extends Controller
     public function destroy($id)
     {
         $postTag=PostTag::findOrFail($id);
-       
+
         $status=$postTag->delete();
-        
+
         if($status){
-            request()->session()->flash('success','Post Tag successfully deleted');
+            request()->session()->flash('success','Xóa thành công thẻ bài viết');
         }
         else{
-            request()->session()->flash('error','Error while deleting post tag');
+            request()->session()->flash('error','Có lỗi trong quá trình xóa !!');
         }
         return redirect()->route('post-tag.index');
     }

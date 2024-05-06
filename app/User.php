@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('App\Models\Order');
     }
+
+    public static function countActiveUser(){
+        $data=User::where('status','active')->count();
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
 }

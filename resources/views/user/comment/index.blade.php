@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title','E-SHOP || Comment Page')
+@section('title','Shopgiay || Quản lý bình luận')
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Comment Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách bình luận</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -17,24 +17,24 @@
         <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Author</th>
-              <th>Post Title</th>
-              <th>Message</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>STT</th>
+              <th>Tác giả</th>
+              <th>Tiêu đề bài viết</th>
+              <th>Nội dung bình luận</th>
+              <th>Ngày</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
-              <th>Author</th>
-              <th>Post Title</th>
-              <th>Message</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
+                <th>STT</th>
+                <th>Tác giả</th>
+                <th>Tiêu đề bài viết</th>
+                <th>Nội dung bình luận</th>
+                <th>Ngày</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
             </tr>
           </tfoot>
           <tbody>
@@ -66,7 +66,7 @@
         </table>
         <span style="float:right">{{$comments->links()}}</span>
         @else
-          <h6 class="text-center">No post comments found!!!</h6>
+          <h6 class="text-center">Chưa bình luận bài viết nào!!!</h6>
         @endif
       </div>
     </div>
@@ -122,8 +122,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Bạn có chắc không?",
+                    text: "Khi xóa sẽ không thể khôi phục dữ liệu!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -132,7 +132,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Dữ liệu an toàn!");
                     }
                 });
           })

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','E-SHOP || All Notifications')
+@section('title','Shopgiay || All Notifications')
 @section('main-content')
 <div class="card">
     <div class="row">
@@ -7,16 +7,16 @@
            @include('backend.layouts.notification')
         </div>
     </div>
-  <h5 class="card-header">Notifications</h5>
+  <h5 class="card-header">Thông báo</h5>
   <div class="card-body">
     @if(count(Auth::user()->Notifications)>0)
     <table class="table  table-hover admin-table" id="notification-dataTable">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Time</th>
-          <th scope="col">Title</th>
-          <th scope="col">Action</th>
+          <th scope="col">STT</th>
+          <th scope="col">Thời gian</th>
+          <th scope="col">Tiêu đề</th>
+          <th scope="col">Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +40,7 @@
       </tbody>
     </table>
     @else
-      <h2>Notifications Empty!</h2>
+      <h2>Thông báo trống!</h2>
     @endif
   </div>
 </div>
@@ -87,8 +87,8 @@
             // alert(dataID);
             e.preventDefault();
             swal({
-                  title: "Are you sure?",
-                  text: "Once deleted, you will not be able to recover this data!",
+                  title: "Bạn có chắc không?",
+                  text: "Một khi xóa sẽ không thể khôi phục dữ liệu!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
@@ -97,7 +97,7 @@
                   if (willDelete) {
                     form.submit();
                   } else {
-                      swal("Your data is safe!");
+                      swal("Dữ liệu an toàn!");
                   }
               });
         })

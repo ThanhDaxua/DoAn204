@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Order Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Danh sách đơn hàng</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -17,28 +17,28 @@
         <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Order No.</th>
-              <th>Name</th>
+              <th>STT</th>
+              <th>Mã đơn hàng</th>
+              <th>Tên</th>
               <th>Email</th>
-              <th>Quantity</th>
-              <th>Charge</th>
-              <th>Total Amount</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Số lượng</th>
+              <th>Phí vận chuyển</th>
+              <th>Tổng</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
-              <th>Order No.</th>
-              <th>Name</th>
+              <th>STT</th>
+              <th>Mã đơn hàng</th>
+              <th>Tên</th>
               <th>Email</th>
-              <th>Quantity</th>
-              <th>Charge</th>
-              <th>Total Amount</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Số lượng</th>
+              <th>Phí vận chuyển</th>
+              <th>Tổng</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
               </tr>
           </tfoot>
           <tbody>
@@ -49,8 +49,8 @@
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>${{$order->shipping->price}}</td>
-                    <td>${{number_format($order->total_amount,2)}}</td>
+                    <td>{{$order->shipping->price}}đ</td>
+                    <td>{{number_format($order->total_amount,0)}}đ</td>
                     <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">{{$order->status}}</span>
@@ -64,11 +64,11 @@
                     </td>
                     <td>
                         <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                        <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
-                          @csrf
-                          @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </form>
+{{--                        <form method="POST" action="{{route('user.order.delete',[$order->id])}}">--}}
+{{--                          @csrf--}}
+{{--                          @method('delete')--}}
+{{--                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>--}}
+{{--                        </form>--}}
                     </td>
                 </tr>
             @endforeach
@@ -76,7 +76,7 @@
         </table>
         <span style="float:right">{{$orders->links()}}</span>
         @else
-          <h6 class="text-center">No orders found!!! Please order some products</h6>
+          <h6 class="text-center">Không có đơn hàng nào!!!</h6>
         @endif
       </div>
     </div>
@@ -132,8 +132,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                  title: "Bạn có chắc không?",
+                  text: "Khi xóa sẽ không thể khôi phục dữ liệu!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -142,7 +142,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Dữ liệu an toàn!");
                     }
                 });
           })
