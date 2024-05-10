@@ -42,14 +42,15 @@
               </tr>
           </tfoot>
           <tbody>
-            @foreach($orders as $order)
+          @if(count($orders)>0)
+          @foreach($orders as $order)
                 <tr>
                     <td>{{$order->id}}</td>
                     <td>{{$order->order_number}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>{{$order->shipping->price}}đ</td>
+                    <td>0 đ</td>
                     <td>{{number_format($order->total_amount,0)}}đ</td>
                     <td>
                         @if($order->status=='new')
@@ -72,6 +73,8 @@
                     </td>
                 </tr>
             @endforeach
+          @endif
+           
           </tbody>
         </table>
         <span style="float:right">{{$orders->links()}}</span>

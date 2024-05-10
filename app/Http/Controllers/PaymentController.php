@@ -29,6 +29,7 @@ class  PaymentController extends Controller
             return view("backend.payment.success");
         } catch (\Exception $e) {
             request()->session()->flash('error','Số lượng request vnpay bị giới hạn, vui lòng đăng nhập lại để thao tác !');
+            return redirect("/");
         }
            
       
